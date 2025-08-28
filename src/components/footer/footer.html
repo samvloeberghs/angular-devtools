@@ -1,0 +1,19 @@
+<button type="button" (click)="toggleFooterTemplate()">Toggle footer template</button>
+
+<div>
+  @if (useAlternativeTemplate()) {
+    Showing the alternative footer template:
+  }
+  <div *ngIf="!useAlternativeTemplate()">
+    Showing the default footer template:
+  </div>
+</div>
+
+<ng-container [ngTemplateOutlet]="footerTemplate()"></ng-container>
+
+<ng-template #defaultFooterTemplate>
+  <app-footer-default></app-footer-default>
+</ng-template>
+<ng-template #alternativeFooterTemplate>
+  <app-footer-alternative></app-footer-alternative>
+</ng-template>

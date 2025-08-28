@@ -1,0 +1,14 @@
+<h2>
+  About
+</h2>
+
+<p>
+  Simple sample application to show some Angular DevTools features.
+</p>
+
+<nav class="about__nav nav">
+  <a [routerLinkActive]="'nav__link--active'" [routerLink]="['/', 'about', 'me']" class="nav__link">More about me</a>
+  <a [routerLinkActive]="'nav__link--active'" [routerLink]="['/', 'about', 'angular']" class="nav__link">More about Angular</a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.home {
+  &__post-link {
+    color: #555;
+    border-bottom: 1px solid #555;
+    text-decoration: none;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

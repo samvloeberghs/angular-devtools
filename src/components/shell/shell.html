@@ -1,0 +1,15 @@
+<div class="shell">
+  <app-header class="shell__header" [subTitle]="'Angular Graz - 05/09/2025'"></app-header>
+
+  <nav class="shell__nav nav">
+    <a [routerLink]="['/']" class="nav__link" [routerLinkActive]="'nav__link--active'" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a [routerLink]="['/','about']" class="nav__link" [routerLinkActive]="'nav__link--active'">About</a>
+    <a [routerLink]="['/','contact']" class="nav__link" [routerLinkActive]="'nav__link--active'">Contact</a>
+  </nav>
+
+  <div class="shell__content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-footer class="shell__footer"></app-footer>
+</div>

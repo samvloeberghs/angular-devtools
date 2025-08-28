@@ -1,0 +1,20 @@
+[
+  {
+    "content": "What are some of the best practices in Angular? And why should you care about them? In this blog we will discuss timeless best practices that are applicable to any Angular project.",
+    "slug": "timeless-angular-best-practices",
+    "title": "Timeless Angular Best Practices",
+    "date": "2024-06-01T18:00:00Z"
+  },
+  {
+    "content": "This article is intended to help anybody using Nx workspaces. These instructions are based on the latest version of Nx, at the time of writing 16.5.5. They could work for earlier / later versions, but might need some tweaking in the configuration.",
+    "slug": "nx-workspaces-target-defaults",
+    "title": "Nx Workspaces - Target Defaults",
+    "date": "2023-08-05T10:00:00Z"
+  },
+  {
+    "content": "This post is targeted to webdevelopers that are creating offline-capable applications and more specifically offline-capable applications that can be categorized as SPAs or Single Page Applications. I will share some of my lessons learned, not just to share them, but also to maybe get feedback from interested readers that might have found other ways or used other methods to solve the problems described.",
+    "slug": "going-offline-with-workbox",
+    "title": "Going offline with Workbox",
+    "date": "2019-05-31T14:00:00Z"
+  }
+]

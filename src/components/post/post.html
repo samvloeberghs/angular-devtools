@@ -1,0 +1,10 @@
+@if (post.hasValue()) {
+  <h2 class="post__title">{{ post.value().title }}</h2>
+  <p class="post__body">
+    {{ post.value().body }}
+  </p>
+} @else if (post.error()) {
+  <div>Could not load post</div>
+} @else if (post.isLoading()) {
+  <div>Loading post...</div>
+}

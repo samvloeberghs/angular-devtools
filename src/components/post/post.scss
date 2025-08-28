@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.post {
+  &__title {
+    text-transform: capitalize;
+  }
+
+  &__body {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@if (posts.hasValue()) {
+
+  <p class="home__number-of-posts">
+    Number of posts: {{ numberOfPosts() }}
+  </p>
+  <ul>
+    @for (postLink of posts.value(); track postLink.id) {
+      <li><a [routerLink]="['/', 'posts', postLink.id]" class="home__post-link">
+        {{postLink.title}}
+      </a></li>
+    }
+  </ul>
+} @else if (posts.error()) {
+  <div>Could not load posts</div>
+} @else if (posts.isLoading()) {
+  <div>Loading posts...</div>
+}

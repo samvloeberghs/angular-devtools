@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.header {
+  &__title {
+    margin: 0 0 0.5rem 0;
+  }
+
+  &__sub-title {
+    margin: 0 0 0 0;
+  }
+
+  &__current-time {
+    margin: 0.25rem 0 1rem 0;
+  }
+}
