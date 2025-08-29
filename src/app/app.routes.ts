@@ -5,12 +5,12 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('../components/home/home').then(m => m.Home),
+    loadComponent: () => import('../components/home/home'),
     title: 'Home',
   },
   {
     path: 'about',
-    loadComponent: () => import('../components/about/about').then(m => m.About),
+    loadComponent: () => import('../components/about/about'),
     loadChildren: () => import('../components/about/routes').then(m => m.routes),
     title: 'About'
   },
@@ -21,7 +21,7 @@ export const routes: Routes = [
   },
   {
     path: 'posts/:id',
-    loadComponent: () => import('../components/post/post').then(m => m.Post),
+    loadComponent: () => import('../components/post/post'),
     title: 'Post Details'
   }
 ];

@@ -8,12 +8,12 @@ const API_URL = 'https://jsonplaceholder.typicode.com/';
   providedIn: 'root',
 })
 export class PostsService {
-  public readonly activePostId = signal<number | null>(null);
+  readonly #platformId = inject(PLATFORM_ID);
+  readonly #transferState = inject(TransferState);
 
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly transferState = inject(TransferState);
+  readonly activePostId = signal<number | null>(null);
 
-  public readonly post = resource({
+  readonly post = resource({
     params: () => {
       const activePostId = this.activePostId();
 
@@ -28,15 +28,15 @@ export class PostsService {
       const path = `${ API_URL }posts/${ params.postId }`;
       const fetchIt = () => fetch(path).then(res => res.json() as Promise<Post>);
 
-      if (isPlatformServer(this.platformId)) {
+      if (isPlatformServer(this.#platformId)) {
         const data = await fetchIt();
-        this.transferState.set(POST_DETAIL_DATA_KEY, data);
+        this.#transferState.set(POST_DETAIL_DATA_KEY, data);
         return Promise.resolve(data);
       } else {
-        const data = this.transferState.get<Post>(POST_DETAIL_DATA_KEY, null as any);
+        const data = this.#transferState.get<Post>(POST_DETAIL_DATA_KEY, null as any);
 
         if (data) {
-          this.transferState.remove(POST_DETAIL_DATA_KEY);
+          this.#transferState.remove(POST_DETAIL_DATA_KEY);
           return Promise.resolve(data);
         }
 
@@ -45,22 +45,21 @@ export class PostsService {
     },
   })
 
-  public readonly posts = resource({
+  readonly posts = resource({
     loader: async () => {
       const POSTS_DATA_KEY = makeStateKey<any>('posts');
       const path = `${ API_URL }posts`;
       const fetchIt = () => fetch(path).then(res => res.json() as Promise<Post[]>);
 
-      if (isPlatformServer(this.platformId)) {
+      if (isPlatformServer(this.#platformId)) {
         const data = (await fetchIt()).slice(0, 3);
-        console.log('setting transfer state for posts', data);
-        this.transferState.set(POSTS_DATA_KEY, data);
+        this.#transferState.set(POSTS_DATA_KEY, data);
         return data;
       } else {
-        const data =  Promise.resolve(this.transferState.get<Post[]>(POSTS_DATA_KEY, null as any));
+        const data =  Promise.resolve(this.#transferState.get<Post[]>(POSTS_DATA_KEY, null as any));
 
         if (data) {
-          this.transferState.remove(POSTS_DATA_KEY);
+          this.#transferState.remove(POSTS_DATA_KEY);
           return Promise.resolve(data);
         }
 

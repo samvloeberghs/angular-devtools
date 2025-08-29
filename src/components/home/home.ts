@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink } from '@angular/router';
 
 import { PostsService } from '../../services/posts.service';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,16 @@ import { PostsService } from '../../services/posts.service';
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Home {
-  private readonly postsService = inject(PostsService);
-  public readonly posts = this.postsService.posts.asReadonly();
-  public readonly numberOfPosts = computed<number>(() => {
-    console.log('Calculating number of posts');
+export default class Home {
+  readonly #postsService = inject(PostsService);
+  readonly #loggerService = inject(LoggerService);
+
+  readonly posts = this.#postsService.posts.asReadonly();
+  readonly numberOfPosts = computed<number>(() => {
     return this.posts.value()?.length ?? 0;
-  })
+  });
+
+  constructor(){
+    this.#loggerService.log("Home component initialized");
+  }
 }

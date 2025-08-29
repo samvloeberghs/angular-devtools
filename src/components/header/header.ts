@@ -13,8 +13,8 @@ import { DatePipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Header {
-  public readonly subTitle = input.required();
-  public readonly currentTime = linkedSignal({
+  readonly subTitle = input.required();
+  readonly currentTime = linkedSignal({
     source: toSignal(interval(10000)),
     computation: () => new Date(),
   });

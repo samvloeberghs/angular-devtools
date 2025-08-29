@@ -7,15 +7,15 @@ import { PostsService } from '../../services/posts.service';
   styleUrl: './post.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Post {
+export default class Post {
   protected readonly id = input.required<number>();
-  private readonly postsService = inject(PostsService);
-  protected readonly post = this.postsService.post.asReadonly();
+  readonly #postsService = inject(PostsService);
+  protected readonly post = this.#postsService.post.asReadonly();
 
   constructor(){
     effect(() => {
       const id = this.id();
-      this.postsService.activePostId.set(id);
+      this.#postsService.activePostId.set(id);
     }, {
       debugName: 'Post Component - Set Active Post Id'
     });

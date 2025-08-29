@@ -2,14 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed, inject,
-  linkedSignal,
   signal,
   TemplateRef,
   viewChild
 } from '@angular/core';
 import { NgIf, NgTemplateOutlet } from '@angular/common';
-import { Alternative } from './alternative/alternative';
-import { Default } from './default/default';
+import { Alternative } from './alternative';
+import { Default } from './default';
 import { LoggerService } from '../../services/logger.service';
 
 @Component({
@@ -23,7 +22,8 @@ import { LoggerService } from '../../services/logger.service';
     Default
   ],
   providers: [
-    LoggerService,
+    LoggerService, // when provided again as view provider,
+    // a new instance is created for this component and its children
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
