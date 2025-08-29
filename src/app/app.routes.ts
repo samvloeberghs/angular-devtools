@@ -4,7 +4,7 @@ import { Contact } from '../components/contact/contact';
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
+    pathMatch: 'prefix',
     loadComponent: () => import('../components/home/home'),
     title: 'Home',
   },

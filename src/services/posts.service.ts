@@ -52,18 +52,18 @@ export class PostsService {
       const fetchIt = () => fetch(path).then(res => res.json() as Promise<Post[]>);
 
       if (isPlatformServer(this.#platformId)) {
-        const data = (await fetchIt()).slice(0, 3);
-        this.#transferState.set(POSTS_DATA_KEY, data);
-        return data;
+        const newData = (await fetchIt()).slice(0, 3);
+        this.#transferState.set(POSTS_DATA_KEY, newData);
+        return newData;
       } else {
-        const data =  Promise.resolve(this.#transferState.get<Post[]>(POSTS_DATA_KEY, null as any));
+        const transferStateData = this.#transferState.get<Post[]>(POSTS_DATA_KEY, null as any);
 
-        if (data) {
+        if (transferStateData) {
           this.#transferState.remove(POSTS_DATA_KEY);
-          return Promise.resolve(data);
+          return Promise.resolve(transferStateData);
         }
 
-        return fetchIt();
+        return (await fetchIt()).slice(0, 3);
       }
     },
   })
